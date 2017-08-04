@@ -1,9 +1,28 @@
+Rem
+  Spam.bmx
+  Spam Programming Language
+  version: 17.08.04
+  Copyright (C) 2017 Jeroen P. Broks
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+End Rem
 Strict
 Framework tricky_units.PrefixSuffix
 Import    tricky_units.StringMap
 
-MKL_Version "",""
-MKL_Lic     "",""
+MKL_Version "Spam Programming Language - Spam.bmx","17.08.04"
+MKL_Lic     "Spam Programming Language - Spam.bmx","ZLib License"
 
 If Len(AppArgs)<2
 	Print "Spam Programming Language - version "+MKL_NewestVersion()
@@ -129,13 +148,21 @@ While curl < (Len code)
 	chat curl+"> "+cw
 	If Not check
 		curl:+1
-		check=true
+		check=True
 	ElseIf MapContains(labels,cw) 
 		curl = labels.value(cw).toint()
 	ElseIf Prefixed(cw,"X")
 		If last And last<>"CHECK"
 			Local times = Right(cw,Len(cw)-1).toint()
 			For Local  i=1 Until times 
+				itmap.execute last
+			Next			
+		EndIf
+		curl:+1	
+	ElseIf Suffixed(cw,"X")
+		If last And last<>"CHECK"
+			Local times = Left(cw,Len(cw)-1).toint()
+			For Local i=1 Until times 
 				itmap.execute last
 			Next			
 		EndIf
