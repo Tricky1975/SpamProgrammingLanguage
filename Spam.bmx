@@ -1,7 +1,7 @@
 Rem
   Spam.bmx
   Spam Programming Language
-  version: 17.08.04
+  version: 17.08.05
   Copyright (C) 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -21,7 +21,7 @@ Strict
 Framework tricky_units.PrefixSuffix
 Import    tricky_units.StringMap
 
-MKL_Version "Spam Programming Language - Spam.bmx","17.08.04"
+MKL_Version "Spam Programming Language - Spam.bmx","17.08.05"
 MKL_Lic     "Spam Programming Language - Spam.bmx","ZLib License"
 
 If Len(AppArgs)<2
@@ -148,7 +148,7 @@ While curl < (Len code)
 	chat curl+"> "+cw
 	If Not check
 		curl:+1
-		check=True
+		check=MapContains(labels,cw) Or MapContains(itmap,cw)
 	ElseIf MapContains(labels,cw) 
 		curl = labels.value(cw).toint()
 	ElseIf Prefixed(cw,"X")
