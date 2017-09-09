@@ -54,6 +54,7 @@ The number of memory slots used depends on the height of the number.
 ## DIPLOMA
 
 User can input a string and will take up as many memory spots as it needs to fill it out.
+You can cap this by using the $ prefix anywhere prior to the Diploma command
 
 ## PREFIX: HTTP://
 
@@ -70,4 +71,7 @@ If no command available or no valid number was entered nothing will happen
 
 Same as 'PREFIX: X'
 
+## PREFIX: $
 
+Set the maximum length of a string "DIPLOMA" can accept. This allows you "cleaner" coding when accepting strings.
+For the "VIAGRA" command nothing changes.
