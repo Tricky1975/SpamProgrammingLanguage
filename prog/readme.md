@@ -5,7 +5,7 @@ I am very sure you will be able to create true pieces of art here.
 
 Simply throw me a pull request with your code.
 If you created a program which will calculate all prime numbers between 0 and 100, and your name is SillyProgrammer, you can just name your file
-~~~prime_numbers_by_SillyProgrammer.spam~~~
+``prime_numbers_by_SillyProgrammer.spam``
 
 A few rules:
 - Please tell me in the description of your pull request what effect the program is supposed to do.
