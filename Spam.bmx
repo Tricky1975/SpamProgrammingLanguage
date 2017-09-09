@@ -1,7 +1,7 @@
 Rem
   Spam.bmx
   Spam Programming Language
-  version: 17.08.05
+  version: 17.09.09
   Copyright (C) 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -21,7 +21,7 @@ Strict
 Framework tricky_units.PrefixSuffix
 Import    tricky_units.StringMap
 
-MKL_Version "Spam Programming Language - Spam.bmx","17.08.05"
+MKL_Version "Spam Programming Language - Spam.bmx","17.09.09"
 MKL_Lic     "Spam Programming Language - Spam.bmx","ZLib License"
 
 If Len(AppArgs)<2
@@ -45,6 +45,7 @@ Global labels:StringMap = New StringMap
 Global curl = 0
 Global check = 1
 Global last$ = ""
+Global MaxString=-1
 
 
 Function Chat(A$) ' Debug
@@ -108,7 +109,7 @@ Function it_casino()	memory[Pointer]:-1 End Function;		itmap.add "CASINO",it_cas
 Function it_check()	check=Memory[pointer] End Function;		itmap.add "CHECK",it_check	' If the current value is 0, skip the next valid command
 Function it_next()	Print; End Function				itmap.add "NEXT",it_next
 Function it_viagra()
-	Local i:Long = Abs Input().toint()
+	Local i:Long = Abs Input("").toint()
 	Local tp = Pointer
 	Local e:Long = 1
 	For Local ak=1 Until 7
@@ -123,9 +124,10 @@ Function it_viagra()
 	Next
 End Function								itmap.add "VIAGRA",it_viagra	' Asks user for (positive) number (64 bit max)
 Function it_diploma()
-	Local s$ = Input()
+	Local s$ = Input("")
 	Local tp = pointer
 	For Local ak=0 Until (Len s)
+		If maxstring>=0 And ak>=maxstring Exit
 		memory[tp]=s[ak]
 		tp:+1
 		If tp>=(Len Memory) tp=0
@@ -151,6 +153,10 @@ While curl < (Len code)
 		check=MapContains(labels,cw) Or MapContains(itmap,cw)
 	ElseIf MapContains(labels,cw) 
 		curl = labels.value(cw).toint()
+	ElseIf Prefixed(cw,"$")
+		 maxstring = Right(cw,(Len cw)-1).toint()
+		'Print maxstring			
+		curl:+1
 	ElseIf Prefixed(cw,"X")
 		If last And last<>"CHECK"
 			Local times = Right(cw,Len(cw)-1).toint()
