@@ -30,21 +30,144 @@ using TrickyUnits;
 using System;
 using System.Collections.Generic;
 
-namespace SpamProgrammingLangauge{
-class SpamProgrammingLanguage{
+namespace SpamProgrammingLanguage{
+    /*
+        Type tit
+
+        Field f()
+    End Type
+    */
+    delegate void tit();
+
+    class itmap
+    { // Extends TMap
+
+        static Dictionary<string, tit> map = new Dictionary<string, tit>();
+
+        static public void execute(string af)
+        {
+            var f = af.ToUpper();
+            if (map.ContainsKey(f))
+            {
+                tit t = map[f];
+                t();
+                SpamProgrammingLanguage.last = f;
+            }
+        }
+
+        static void add(string fn, tit f)
+        /*
+        Local t:tit = New tit
+
+        t.f = f
+        MapInsert Self, fn.toupper() , t
+    End Method
+    */
+        {
+            map[fn.ToUpper()] = f;
+        }
+
+
+        //Global itmap : titmap = New titmap
+        static int Pointer { get { return SpamProgrammingLanguage.Pointer; } set { SpamProgrammingLanguage.Pointer = value; } }
+        static byte[] Memory { get { return SpamProgrammingLanguage.Memory; }}
+        static bool check { get { return SpamProgrammingLanguage.check; } set { SpamProgrammingLanguage.check = value; }}
+        static itmap()
+        {
+            add("BET", delegate () { Console.Write(qstr.Chr(SpamProgrammingLanguage.Memory[SpamProgrammingLanguage.Pointer])); }); //Function it_chrshow()   WriteStdout Chr(memory[Pointer]) End Function; itmap.add "BET",it_chrshow   ' Show character of current value
+            add("SHOW", delegate () { Console.Write(SpamProgrammingLanguage.Memory[SpamProgrammingLanguage.Pointer]); }); //Function it_bteshow()   WriteStdout memory[pointer] End Function; itmap.add "SHOW",it_bteshow   ' Show current byte value
+            add("WIN", delegate () { SpamProgrammingLanguage.Memory[SpamProgrammingLanguage.Pointer]++; }); //Function it_win()   Memory[Pointer]:+1 End Function; itmap.add "WIN",it_win     ' Increase value by 1
+            add("CASINO", delegate () { Memory[Pointer]--; }); //Function it_casino()    memory[Pointer]:-1 End Function; itmap.add "CASINO",it_casino   ' Decrease value by 1
+            add("CHECK", delegate () { check = Memory[Pointer] != 0; }); //Function it_check() check=Memory[pointer] End Function;     itmap.add "CHECK",it_check  ' If the current value is 0, skip the next valid command
+            add("NEXT", delegate () { Console.WriteLine(); }); //Function it_next()  Print; End Function             itmap.add "NEXT",it_next
+            add("VIAGRA", delegate ()
+            {
+                long i = Math.Abs(qstr.ToLong(Console.ReadLine()));
+                var b = BitConverter.GetBytes(i);
+                long e = 1;
+                for (int ak = 1; ak < 7;ak++){
+                    if (i > (long)Math.Pow(256, ak)) e = ak + 1;
+                }
+                var tp = Pointer;
+                for (int ak = 0; ak < e;ak++){
+                    Memory[tp] = byte[ak];
+                    tp++;
+                    if (tp >= Memory.Length) tp = 0;
+                }
+            });
+            /*
+Function it_viagra()
+
+    Local i:Long = Abs Input("").toint()
+
+    Local tp = Pointer
+
+    Local e:Long = 1
+    For Local ak=1 Until 7
+        If i>256 ^ ak e = ak + 1
+
+    Next
+    Local b:TBank = CreateBank(8)
+
+    PokeLong b,0,i
+    For Local ak = 0 Until e
+
+        Memory[tp] = PeekByte(b, ak)
+
+        tp:+1
+        If tp>=(Len Memory) tp = 0
+
+    Next
+End Function itmap.add "VIAGRA", it_viagra    ' Asks user for (positive) number (64 bit max)
+*/
+            /*
+Function it_diploma()
+    Local s$ = Input("")
+
+    Local tp = pointer
+
+    For Local ak=0 Until(Len s)
+
+        If maxstring>=0 And ak>=maxstring Exit
+
+        memory[tp]=s[ak]
+        tp:+1
+        If tp>=(Len Memory) tp = 0
+
+    Next
+End Function itmap.add "DIPLOMA", it_diploma ' asks user for string
+
+Function it_money()
+    Pointer:+1
+
+    If Pointer>=(Len Memory) Pointer = 0
+End Function                                itmap.add "MONEY", it_money ' Increase pointer
+*/
+            /*
+Function it_cash()
+    Pointer:-1
+
+    If Pointer<0 Pointer = (Len Memory) - 1
+End Function  itmap.add "CASH",it_cash ' decrease pointer
+*/
+        }
+
+class SpamProgrammingLanguage
+    {
 	
    const bool allowchat = false;
 
-   byte[] Memory = new byte[1024];
-   int Pointer=0;
-   Dictionary<string,int> labels = new Dictionary<string,int>();
-   int curl = 0;
-   int check = 1;
-   string last = "";
-   string MaxString=-1;
-        //List<string> Code = new List<string>();
-        string[] code = null;
-   string[] AAppArgs
+   static public byte[] Memory = new byte[1024];
+            static public int Pointer=0;
+            static Dictionary<string,int> labels = new Dictionary<string,int>();
+            static int curl = 0;
+            static public bool check = true;
+            static public string last = "";
+            static int MaxString =-1;
+            //List<string> Code = new List<string>();
+            static string[] code = null;
+            static string[] AAppArgs;
+            
 
 
 static void Print(string a="") => Console.WriteLine(a);
@@ -112,69 +235,6 @@ static public void Main(string[] AAppArgs){
 
 
 
-Type tit
-	Field f()
-End Type
-
-
-Type titmap Extends TMap
-	Method execute(f$)
-		Local t:tit = tit ( MapValueForKey ( Self , f.toupper() ) )
-		If t t.f;last = f
-	End Method
-
-	Method add(fn$,f())
-		Local t:tit = New tit
-		t.f = f
-		MapInsert Self, fn.toupper() , t
-	End Method
-End Type
-
-Global itmap : titmap = New titmap
-
-
-
-Function it_chrshow()	WriteStdout Chr(memory[Pointer]) End Function;	itmap.add "BET",it_chrshow	' Show character of current value
-Function it_bteshow()	WriteStdout memory[pointer] End Function;	itmap.add "SHOW",it_bteshow	' Show current byte value
-Function it_win()	Memory[Pointer]:+1 End Function;		itmap.add "WIN",it_win		' Increase value by 1
-Function it_casino()	memory[Pointer]:-1 End Function;		itmap.add "CASINO",it_casino	' Decrease value by 1
-Function it_check()	check=Memory[pointer] End Function;		itmap.add "CHECK",it_check	' If the current value is 0, skip the next valid command
-Function it_next()	Print; End Function				itmap.add "NEXT",it_next
-Function it_viagra()
-	Local i:Long = Abs Input("").toint()
-	Local tp = Pointer
-	Local e:Long = 1
-	For Local ak=1 Until 7
-		If i>256 ^ ak e=ak+1
-	Next
-	Local b:TBank = CreateBank(8)
-	PokeLong b,0,i
-	For Local ak=0 Until e
-		Memory[tp] = PeekByte(b,ak)
-		tp:+1
-		If tp>=(Len Memory) tp=0
-	Next
-End Function								itmap.add "VIAGRA",it_viagra	' Asks user for (positive) number (64 bit max)
-Function it_diploma()
-	Local s$ = Input("")
-	Local tp = pointer
-	For Local ak=0 Until (Len s)
-		If maxstring>=0 And ak>=maxstring Exit
-		memory[tp]=s[ak]
-		tp:+1
-		If tp>=(Len Memory) tp=0
-	Next
-End Function								itmap.add "DIPLOMA",it_diploma ' asks user for string
-
-Function it_money()
-	Pointer:+1
-	If Pointer>=(Len Memory) Pointer=0
-End Function								itmap.add "MONEY",it_money ' Increase pointer
-
-Function it_cash()
-	Pointer:-1
-	If Pointer<0 Pointer = (Len Memory) - 1
-End Function								itmap.add "CASH",it_cash ' decrease pointer
 
 parse
 While curl < (Len code)
