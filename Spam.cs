@@ -32,17 +32,70 @@ using System.Collections.Generic;
 
 namespace SpamProgrammingLangauge{
 class SpamProgrammingLanguage{
+	
+   const bool allowchat = false;
+
+   byte[] Memory = new byte[1024];
+   int Pointer=0;
+   Dictionary<string,int> labels = new Dictionary<string,int>();
+   int curl = 0;
+   int check = 1;
+   string last = "";
+   string MaxString=-1;
+        //List<string> Code = new List<string>();
+        string[] code = null;
+   string[] AAppArgs
+
 
 static void Print(string a="") => Console.WriteLine(a);
 static string StripAll(string a) => "LATER";
 static void ChangeDir(string cd) => Console.WriteLine("CD comes later");
 
-static public void Main(string[] AppArgs){
+        static void Parse()
+        {
+            var src = AppArgs[1];
+            if (qstr.ExtractExt(src) == "") src += ".spam";
+            Chat("Parsing: " + src);
+            var BT = QOpen.ReadFile(src);
+            var word = "";
+            var tcode = new List<string>();
+            byte X = 0;
+            while (!BT.EOF)
+            {
+                X = BT.ReadByte();
+                if (X == 13 || X == 10 || X == 9 || x = 32)
+                {
+                    tcode.Add(word.ToUpper());
+                    word = "";
+                }
+                else
+                {
+                    word += qstr.Chr(X);
+                }
+            }
+            BT.Close();
+            code = new String[tcode.Count];
+            var c = 0;
+            foreach (string w in tcode)
+            {
+                code[c] = w; c++;
+                if (qstr.Prefixed(w, "HTTP://") labels[Right(w, w.Length - 7)] = c; //MapInsert labels,Right(w,(Len w)-7),"$"+Hex(c)
+            }
+        }
+
+
+
+static void Chat(string A){ // debug
+	if (allowchat) Print("CHAT: "+A);
+}
+
+
+static public void Main(string[] AAppArgs){
+	AppArgs=AAppargs;
   MKL.Version("Spam Programming Language - Spam.bmx","17.09.09");
   MKL.Lic (     "Spam Programming Language - Spam.bmx","ZLib License");
-
   if(AppArgs.Length<2){
-	   Print("Spam Programming Language - version "+MKL_NewestVersion());
+	   //Print("Spam Programming Language - version "+MKL.NewestVersion());
      Print("Set up by Jeroen Broks");
      Print("Try to make programming code look like spam folks!");
      Print();
@@ -52,48 +105,12 @@ static public void Main(string[] AppArgs){
    //ChangeDir(LaunchDir);
 
 
-   const bool allowchat = false;
-
-   byte[] Memory = new byte[1024];
-   int Pointer=0;
-   Dictionary<string,string> labels = new Dictionary<string,string>();
-   int curl = 0;
-   int check = 1;
-   string last = "";
-   string MaxString=-1;
+}   
 
 
-Function Chat(A$) ' Debug
-	If allowchat Print "CHAT: "+A
-End	Function
 
-Global Code:String[]
 
-Function Parse()
-	Local src$=AppArgs[1]
-	If Not ExtractExt(src) src:+".spam"
-	Chat "Parsing: "+src
-	Local BT:TStream = ReadFile(src)
-	Local word$
-	Local tcode:TList = New TList
-	Local X:Byte
-	While Not Eof(bt)
-		x = ReadByte(BT)
-		If x=13 Or x=10 Or x=9 Or x=32
-			ListAddLast tcode,Upper(word)
-			word=""
-		Else
-			word:+Chr(x)
-		End If
-	Wend
-	CloseFile bt
-	code = New String[CountList(tcode)]
-	Local c = 0
-	For Local w$=EachIn tcode
-		code[c]=w;c:+1
-		If Prefixed(w,"HTTP://") MapInsert labels,Right(w,(Len w)-7),"$"+Hex(c)
-	Next
-End Function
+
 
 Type tit
 	Field f()
