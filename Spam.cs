@@ -183,7 +183,7 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
     class SpamProgrammingLanguage
     {
 
-        const bool allowchat = false;
+        const bool allowchat = false; // True when debugging only!!
 
         static public byte[] Memory = new byte[1024];
         static public int Pointer = 0;
@@ -245,11 +245,13 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
         static public void Main(string[] AAppArgs)
         {
             AppArgs = AAppArgs;
-            MKL.Version("Spam Programming Language - Spam.cs","18.09.22");
-            MKL.Lic    ("Spam Programming Language - Spam.cs","GNU General Public License 3");
+            MKL.Version("Spam Programming Language - Spam.cs", "18.09.22");
+            MKL.Lic("Spam Programming Language - Spam.cs", "GNU General Public License 3");
             if (AppArgs.Length < 1)
             {
-                //Print("Spam Programming Language - version "+MKL.NewestVersion());
+                QOpen.Hello();
+                qstr.Right("spam", 4); // Does nothing, I know, but MKL needs to to parse it all right :P
+                Print("Spam Programming Language - version "+MKL.Newest);
                 Print("Set up by Jeroen Broks");
                 Print("Try to make programming code look like spam folks!");
                 Print();
@@ -285,25 +287,25 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
                     {
                         int times = qstr.ToInt(qstr.Right(cw, qstr.Len(cw) - 1));
                         for (int i = 1; i < times; i++) itmap.execute(last);
-
                     }
                     curl++;
-                    if (qstr.Suffixed(cw, "X"))
+                }
+                else if (qstr.Suffixed(cw, "X"))
+                {
+                    if (last != "" && last != "CHECK")
                     {
-                        if (last != "" && last != "CHECK")
-                        {
-                            int times = qstr.ToInt(qstr.Left(cw, qstr.Len(cw) - 1));
-                            for (int i = 1; i < times; i++) itmap.execute(last);
-                        }
-                        curl++;
+                        int times = qstr.ToInt(qstr.Left(cw, qstr.Len(cw) - 1));
+                        for (int i = 1; i < times; i++) itmap.execute(last);
                     }
-                    else
-                    {
-                        itmap.execute(cw);
-                        curl++;
-                    }
+                    curl++;
+                }
+                else
+                {
+                    itmap.execute(cw);
+                    curl++;
                 }
             }
         }
     }
 }
+
