@@ -8,7 +8,7 @@ All too easy. ;)
 Ignore warnings about unreachable code. That warning is caused by some code I "dummied" as it was only used for debug purposes.
 
 
-Best way to go is to create a folder called "Visual Studio" or something. For users of Unix based systems it's very important not to use FAT/FAT32/ExFAT formatted devices for this, as Visual Studio has a bug making it unable to work with these devices. I do not know if the command line compiler has any trouble with this though (as I never tried).
+Best way to go is to create a folder called "Visual Studio Projects" or something like that and go to that directory. For users of Unix based systems it's very important not to use FAT/FAT32/ExFAT formatted devices for this, as Visual Studio has a bug making it unable to work with these devices. I do not know if the command line compiler has any trouble with this though (as I never tried).
 
 In this folder type the following commands:
 ~~~shell
