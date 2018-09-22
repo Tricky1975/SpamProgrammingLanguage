@@ -30,7 +30,8 @@ using TrickyUnits;
 using System;
 using System.Collections.Generic;
 
-namespace SpamProgrammingLanguage{
+namespace SpamProgrammingLanguage
+{
     /*
         Type tit
 
@@ -70,8 +71,8 @@ namespace SpamProgrammingLanguage{
 
         //Global itmap : titmap = New titmap
         static int Pointer { get { return SpamProgrammingLanguage.Pointer; } set { SpamProgrammingLanguage.Pointer = value; } }
-        static byte[] Memory { get { return SpamProgrammingLanguage.Memory; }}
-        static bool check { get { return SpamProgrammingLanguage.check; } set { SpamProgrammingLanguage.check = value; }}
+        static byte[] Memory { get { return SpamProgrammingLanguage.Memory; } }
+        static bool check { get { return SpamProgrammingLanguage.check; } set { SpamProgrammingLanguage.check = value; } }
         static itmap()
         {
             add("BET", delegate () { Console.Write(qstr.Chr(SpamProgrammingLanguage.Memory[SpamProgrammingLanguage.Pointer])); }); //Function it_chrshow()   WriteStdout Chr(memory[Pointer]) End Function; itmap.add "BET",it_chrshow   ' Show character of current value
@@ -85,11 +86,13 @@ namespace SpamProgrammingLanguage{
                 long i = Math.Abs(qstr.ToLong(Console.ReadLine()));
                 var b = BitConverter.GetBytes(i);
                 long e = 1;
-                for (int ak = 1; ak < 7;ak++){
+                for (int ak = 1; ak < 7; ak++)
+                {
                     if (i > (long)Math.Pow(256, ak)) e = ak + 1;
                 }
                 var tp = Pointer;
-                for (int ak = 0; ak < e;ak++){
+                for (int ak = 0; ak < e; ak++)
+                {
                     Memory[tp] = byte[ak];
                     tp++;
                     if (tp >= Memory.Length) tp = 0;
@@ -120,6 +123,17 @@ Function it_viagra()
     Next
 End Function itmap.add "VIAGRA", it_viagra    ' Asks user for (positive) number (64 bit max)
 */
+            add("DIPLOMA", delegate ()
+            {
+                string s = Console.ReadLine();
+                int tp = Pointer;
+                for (int ak = 0; ak < s.Length; ak++)
+                {
+                    if (SpamProgrammingLanguage.MaxString >= 0 && ak >= SpamProgrammingLanguage.MaxString) break;
+                    tp++;
+                    if (tp >= Memory.Length) tp = 0;
+                }
+            });
             /*
 Function it_diploma()
     Local s$ = Input("")
@@ -136,13 +150,25 @@ Function it_diploma()
 
     Next
 End Function itmap.add "DIPLOMA", it_diploma ' asks user for string
+*/
 
+            add("MONEY", delegate ()
+            {
+                Pointer++;
+                if (Pointer >= Memory.Length) Pointer = 0;
+            });
+            /*
 Function it_money()
     Pointer:+1
 
     If Pointer>=(Len Memory) Pointer = 0
 End Function                                itmap.add "MONEY", it_money ' Increase pointer
 */
+            add("CASH", delegate ()
+            {
+                Pointer--;
+                if (Pointer < 0) Pointer = (Memory.Length - 1);
+            });
             /*
 Function it_cash()
     Pointer:-1
@@ -151,28 +177,29 @@ Function it_cash()
 End Function  itmap.add "CASH",it_cash ' decrease pointer
 */
         }
+    }
 
-class SpamProgrammingLanguage
+    class SpamProgrammingLanguage
     {
-	
-   const bool allowchat = false;
 
-   static public byte[] Memory = new byte[1024];
-            static public int Pointer=0;
-            static Dictionary<string,int> labels = new Dictionary<string,int>();
-            static int curl = 0;
-            static public bool check = true;
-            static public string last = "";
-            static int MaxString =-1;
-            //List<string> Code = new List<string>();
-            static string[] code = null;
-            static string[] AAppArgs;
-            
+        const bool allowchat = false;
+
+        static public byte[] Memory = new byte[1024];
+        static public int Pointer = 0;
+        static Dictionary<string, int> labels = new Dictionary<string, int>();
+        static int curl = 0;
+        static public bool check = true;
+        static public string last = "";
+        static public int MaxString = -1;
+        //List<string> Code = new List<string>();
+        static string[] code = null;
+        static string[] AppArgs;
 
 
-static void Print(string a="") => Console.WriteLine(a);
-static string StripAll(string a) => "LATER";
-static void ChangeDir(string cd) => Console.WriteLine("CD comes later");
+
+        static void Print(string a = "") => Console.WriteLine(a);
+        static string StripAll(string a) => "LATER";
+        static void ChangeDir(string cd) => Console.WriteLine("CD comes later");
 
         static void Parse()
         {
@@ -202,71 +229,80 @@ static void ChangeDir(string cd) => Console.WriteLine("CD comes later");
             foreach (string w in tcode)
             {
                 code[c] = w; c++;
-                if (qstr.Prefixed(w, "HTTP://") labels[Right(w, w.Length - 7)] = c; //MapInsert labels,Right(w,(Len w)-7),"$"+Hex(c)
+                if (qstr.Prefixed(w, "HTTP://")) labels[qstr.Right(w, w.Length - 7)] = c; //MapInsert labels,Right(w,(Len w)-7),"$"+Hex(c)
             }
         }
 
 
 
-static void Chat(string A){ // debug
-	if (allowchat) Print("CHAT: "+A);
+        static void Chat(string A)
+        { // debug
+            if (allowchat) Print("CHAT: " + A);
+        }
+
+
+        static public void Main(string[] AAppArgs)
+        {
+            AppArgs = AAppArgs;
+            MKL.Version("Spam Programming Language - Spam.bmx", "17.09.09");
+            MKL.Lic("Spam Programming Language - Spam.bmx", "ZLib License");
+            if (AppArgs.Length < 2)
+            {
+                //Print("Spam Programming Language - version "+MKL.NewestVersion());
+                Print("Set up by Jeroen Broks");
+                Print("Try to make programming code look like spam folks!");
+                Print();
+                Print("Usage: " + StripAll(AppArgs[0]) + " <program>[.spam]");
+                return;
+            }
+            //ChangeDir(LaunchDir);
+
+
+            Parse();
+            while (curl < code.Length)
+            {
+                string cw = code[curl];
+                Chat(curl + "> " + cw);
+                if (!check)
+                {
+                    curl++;
+                    check = labels.ContainsKey(cw) || itmap.map.ContainsKey(cw);
+                }
+                else if (labels.ContainsKey(cw))
+                {
+                    curl = qstr.ToInt(labels[cw]);
+                }
+                else if (qstr.Prefixed(cw, "$"))
+                {
+                    MaxString = qstr.ToInt(qstr.Right(cw, qstr.Len(cw) - 1);
+                    //'Print maxstring
+                    curl++;
+                }
+                else if (qstr.Prefixed(cw, "X"))
+                {
+                    if (last != "" && last != "CHECK")
+                    {
+                        int times = qstr.ToInt(qstr.Right(cw, qstr.Len(cw) - 1));
+                        for (int i = 1; i < times; i++) itmap.execute(last);
+
+                    }
+                    curl++;
+                    if (qstr.Suffixed(cw, "X"))
+                    {
+                        if (last != "" && last <> "CHECK")
+                        {
+                            int times = qstr.ToInt(qstr.Left(cw, qstr.Len(cw) - 1));
+                            for (int i = 1; i < times; i++) itmap.execute(last);
+                        }
+                        curl++;
+                    }
+                    else
+                    {
+                        itmap.execute(cw);
+                        curl++;
+                    }
+                }
+            }
+        }
+    }
 }
-
-
-static public void Main(string[] AAppArgs){
-	AppArgs=AAppargs;
-  MKL.Version("Spam Programming Language - Spam.bmx","17.09.09");
-  MKL.Lic (     "Spam Programming Language - Spam.bmx","ZLib License");
-  if(AppArgs.Length<2){
-	   //Print("Spam Programming Language - version "+MKL.NewestVersion());
-     Print("Set up by Jeroen Broks");
-     Print("Try to make programming code look like spam folks!");
-     Print();
-     Print("Usage: "+StripAll(AppArgs[0])+" <program>[.spam]");
-     return;
-   }
-   //ChangeDir(LaunchDir);
-
-
-}   
-
-
-
-
-
-
-
-parse
-While curl < (Len code)
-	Local cw$ = code[curl]
-	chat curl+"> "+cw
-	If Not check
-		curl:+1
-		check=MapContains(labels,cw) Or MapContains(itmap,cw)
-	ElseIf MapContains(labels,cw)
-		curl = labels.value(cw).toint()
-	ElseIf Prefixed(cw,"$")
-		 maxstring = Right(cw,(Len cw)-1).toint()
-		'Print maxstring
-		curl:+1
-	ElseIf Prefixed(cw,"X")
-		If last And last<>"CHECK"
-			Local times = Right(cw,Len(cw)-1).toint()
-			For Local  i=1 Until times
-				itmap.execute last
-			Next
-		EndIf
-		curl:+1
-	ElseIf Suffixed(cw,"X")
-		If last And last<>"CHECK"
-			Local times = Left(cw,Len(cw)-1).toint()
-			For Local i=1 Until times
-				itmap.execute last
-			Next
-		EndIf
-		curl:+1
-	Else
-		itmap.execute cw
-		curl:+1
-	EndIf
-Wend
