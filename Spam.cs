@@ -43,7 +43,7 @@ namespace SpamProgrammingLanguage
     class itmap
     { // Extends TMap
 
-        static Dictionary<string, tit> map = new Dictionary<string, tit>();
+        static public Dictionary<string, tit> map = new Dictionary<string, tit>();
 
         static public void execute(string af)
         {
@@ -93,7 +93,7 @@ namespace SpamProgrammingLanguage
                 var tp = Pointer;
                 for (int ak = 0; ak < e; ak++)
                 {
-                    Memory[tp] = byte[ak];
+                    Memory[tp] = b[ak];
                     tp++;
                     if (tp >= Memory.Length) tp = 0;
                 }
@@ -203,7 +203,7 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
 
         static void Parse()
         {
-            var src = AppArgs[1];
+            var src = AppArgs[0];
             if (qstr.ExtractExt(src) == "") src += ".spam";
             Chat("Parsing: " + src);
             var BT = QOpen.ReadFile(src);
@@ -213,7 +213,7 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
             while (!BT.EOF)
             {
                 X = BT.ReadByte();
-                if (X == 13 || X == 10 || X == 9 || x = 32)
+                if (X == 13 || X == 10 || X == 9 || X == 32)
                 {
                     tcode.Add(word.ToUpper());
                     word = "";
@@ -246,13 +246,13 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
             AppArgs = AAppArgs;
             MKL.Version("Spam Programming Language - Spam.bmx", "17.09.09");
             MKL.Lic("Spam Programming Language - Spam.bmx", "ZLib License");
-            if (AppArgs.Length < 2)
+            if (AppArgs.Length < 1)
             {
                 //Print("Spam Programming Language - version "+MKL.NewestVersion());
                 Print("Set up by Jeroen Broks");
                 Print("Try to make programming code look like spam folks!");
                 Print();
-                Print("Usage: " + StripAll(AppArgs[0]) + " <program>[.spam]");
+                Print("Usage: spam <program>[.spam]");
                 return;
             }
             //ChangeDir(LaunchDir);
@@ -270,11 +270,11 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
                 }
                 else if (labels.ContainsKey(cw))
                 {
-                    curl = qstr.ToInt(labels[cw]);
+                    curl = labels[cw];
                 }
                 else if (qstr.Prefixed(cw, "$"))
                 {
-                    MaxString = qstr.ToInt(qstr.Right(cw, qstr.Len(cw) - 1);
+                    MaxString = qstr.ToInt(qstr.Right(cw, qstr.Len(cw) - 1));
                     //'Print maxstring
                     curl++;
                 }
@@ -289,7 +289,7 @@ End Function  itmap.add "CASH",it_cash ' decrease pointer
                     curl++;
                     if (qstr.Suffixed(cw, "X"))
                     {
-                        if (last != "" && last <> "CHECK")
+                        if (last != "" && last != "CHECK")
                         {
                             int times = qstr.ToInt(qstr.Left(cw, qstr.Len(cw) - 1));
                             for (int i = 1; i < times; i++) itmap.execute(last);
