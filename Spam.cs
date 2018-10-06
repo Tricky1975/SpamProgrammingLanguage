@@ -126,11 +126,13 @@ End Function itmap.add "VIAGRA", it_viagra    ' Asks user for (positive) number 
 */
             add("DIPLOMA", delegate ()
             {
-                string s = Console.ReadLine();
+                var s = System.Text.Encoding.ASCII.GetBytes( Console.ReadLine() );
                 int tp = Pointer;
+                
                 for (int ak = 0; ak < s.Length; ak++)
                 {
-                    if (SpamProgrammingLanguage.MaxString >= 0 && ak >= SpamProgrammingLanguage.MaxString) break;
+                    if (SpamProgrammingLanguage.MaxString >= 0 && ak >= SpamProgrammingLanguage.MaxString) break;                    
+                    Memory[tp]=s[ak];
                     tp++;
                     if (tp >= Memory.Length) tp = 0;
                 }
